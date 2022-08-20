@@ -1,0 +1,26 @@
+{
+  "name": "storinator",
+  "version": "0.1.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "mocha --require mock-local-storage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mircoxi/storinator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Mircoxi/storinator/issues"
+  },
+  "homepage": "https://github.com/Mircoxi/storinator#readme",
+  "devDependencies": {
+    "mocha": "^10.0.0",
+    "mock-local-storage": "^1.1.23",
+    "typescript": "^4.7.4"
+  }
+}
