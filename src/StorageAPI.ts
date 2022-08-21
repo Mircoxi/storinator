@@ -12,11 +12,11 @@ export class StorageAPI {
             // Has a margin of error of +/- 1 second due to rounding.
             expiry = this.getExpiryTime(options.expireIn)
         }
-        let readOnly:boolean = false
-        if (options.readOnly === true) {
-            readOnly = true;
+        let protect:boolean = false
+        if (options.protect === true) {
+            protect = true;
         }
-        let obj:LocalStorage = {name: name, value: value, expires: expiry, readOnly: readOnly}
+        let obj:LocalStorage = {name: name, value: value, expires: expiry, protect: protect}
         try {
             this.saveLocal(obj);
         } catch (e) {
@@ -31,8 +31,8 @@ export class StorageAPI {
         if (obj.expires !== 0) {
             arr['expires'] = obj.expires
         }
-        if (obj.readOnly === true) {
-            arr['readOnly'] = true;
+        if (obj.protect === true) {
+            arr['protect'] = true;
         }
         let string = JSON.stringify(arr);
         try {

@@ -9,5 +9,5 @@ export type OptionsType = {
      * Optionally, a parameter can be set to disallow overwriting the
      * storage object. Should default to false.
      */
-    readOnly?: boolean
+    protect?: boolean
 }
