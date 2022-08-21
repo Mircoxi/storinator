@@ -1,3 +1,3 @@
 import {StorageAPI} from "./StorageAPI";
 
-export { StorageAPI }
+export default StorageAPI;

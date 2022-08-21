@@ -1,5 +1,5 @@
 import {LocalStorage} from "../src/types/LocalStorage";
-import {StorageAPI} from "../src";
+import StorageAPI from "../src";
 import {expect} from "chai";
 
 let expiryTime = Math.round(Date.now() / 1000) + 38400

@@ -6,8 +6,8 @@ import {LocalStorage} from "./types/LocalStorage";
 export class StorageAPI {
 
     static setLocal(name: string, value: string, options: OptionsType = {}): LocalStorage {
-        let expiry: number|null = null;
-        if (options.expireIn !== null) {
+        let expiry: number = 0;
+        if (typeof(options.expireIn) !== 'undefined') {
             // Passing in an expiry time in seconds, so we need to get the correct TTL.
             // Has a margin of error of +/- 1 second due to rounding.
             expiry = this.getExpiryTime(options.expireIn)
@@ -28,7 +28,7 @@ export class StorageAPI {
     static saveLocal(obj: LocalStorage):boolean {
         let arr = {}
         arr['value'] = obj.value;
-        if (obj.expires !== null) {
+        if (obj.expires !== 0) {
             arr['expires'] = obj.expires
         }
         if (obj.readOnly === true) {
@@ -57,7 +57,7 @@ export class StorageAPI {
             }
             let obj:LocalStorage = JSON.parse(localStorage.getItem(name));
             obj.name = name // It's not stored in the key itself, so it needs to be appended separately.
-            if (obj.expires !== null  && obj.expires <= (Date.now() / 1000)) {
+            if (typeof(obj.expires) !== 'undefined'  && obj.expires <= (Date.now() / 1000)) {
                 this.deleteLocal(name)
                 return null;
             } else {
