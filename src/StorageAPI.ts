@@ -30,7 +30,7 @@ export class StorageAPI {
         let arr = {}
         arr['value'] = obj.value;
         if (obj.expires !== null) {
-            arr['expiry'] = obj.expires
+            arr['expires'] = obj.expires
         }
         if (obj.readOnly === true) {
             arr['readOnly'] = true;
@@ -57,6 +57,7 @@ export class StorageAPI {
                 return null;
             }
             let obj:LocalStorage = JSON.parse(localStorage.getItem(name));
+            obj.name = name // It's not stored in the key itself, so it needs to be appended separately.
             if (obj.expires !== null  && obj.expires < (Date.now() / 1000)) {
                 return null;
             } else {
