@@ -7,10 +7,11 @@
         "target": "ES2020",
         "moduleResolution": "node",
         "esModuleInterop": true,
-        "forceConsistentCasingInFileNames": true
+        "forceConsistentCasingInFileNames": true,
     },
     "exclude": [
         "node_modules"
     ],
-    "include": ["src/**/*.ts", "src/*.ts"]
+    "include": ["./src/**/*.ts", "./src/*.ts",
+    ]
 }

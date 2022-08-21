@@ -1,5 +1,5 @@
-import {EncodingTypeEnum} from "./EncodingTypeEnum";
-import {OptionsType} from "./OptionsType";
+import {EncodingTypeEnum} from "./types/EncodingTypeEnum";
+import {OptionsType} from "./types/OptionsType";
 import {LocalStorage} from "./types/LocalStorage";
 
 
@@ -7,7 +7,6 @@ export class StorageAPI {
 
     static setLocal(name: string, value: string, options: OptionsType = {}): LocalStorage {
         let expiry: number|null = null;
-        console.log(options.expireIn)
         if (options.expireIn !== null) {
             // Passing in an expiry time in seconds, so we need to get the correct TTL.
             // Has a margin of error of +/- 1 second due to rounding.
@@ -58,7 +57,8 @@ export class StorageAPI {
             }
             let obj:LocalStorage = JSON.parse(localStorage.getItem(name));
             obj.name = name // It's not stored in the key itself, so it needs to be appended separately.
-            if (obj.expires !== null  && obj.expires < (Date.now() / 1000)) {
+            if (obj.expires !== null  && obj.expires <= (Date.now() / 1000)) {
+                this.deleteLocal(name)
                 return null;
             } else {
                 return obj;
@@ -66,6 +66,10 @@ export class StorageAPI {
         } catch (e) {
             throw new Error("Couldn't parse local storage object.")
         }
+    }
+
+    static deleteLocal(name): void {
+        localStorage.removeItem(name)
     }
 
     /**
