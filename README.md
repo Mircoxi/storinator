@@ -23,7 +23,7 @@ The recommended way to use Storinator is as an ES module.
 import Storinator from 'storinator' 
 ```
 
-You can use any name you like for the import.
+You can use any name you like for the import; simply replace "Storinator" in the methods below with your chosen import name.
 
 To create a simple object in local storage, simply do the following:
 

@@ -17,10 +17,14 @@ export class StorageAPI {
             protect = true;
         }
         let obj:LocalStorage = {name: name, value: value, expires: expiry, protect: protect}
-        try {
-            this.saveLocal(obj);
-        } catch (e) {
-            throw new Error(e);
+        if (!this.checkProtectionLocal(name)) {
+            throw new Error("Trying to overwrite protected item!")
+        } else {
+            try {
+                this.saveLocal(obj);
+            } catch (e) {
+                throw new Error(e);
+            }
         }
         return obj;
     }
@@ -68,8 +72,12 @@ export class StorageAPI {
         }
     }
 
-    static deleteLocal(name): void {
-        localStorage.removeItem(name)
+    static deleteLocal(name:string): void {
+        if (!this.checkProtectionLocal(name)) {
+            throw new Error("Trying to delete protected item!")
+        } else {
+            localStorage.removeItem(name)
+        }
     }
 
     /**
@@ -88,5 +96,15 @@ export class StorageAPI {
             return Math.round(from / 1000) + expireIn;
         }
         return Math.round(Date.now() / 1000) + expireIn;
+    }
+
+    static checkProtectionLocal(name:string) {
+        let obj = this.getLocal(name);
+        if (obj !== null && obj.protect === true) {
+            return false
+        } else {
+            return true;
+        }
+
     }
 }
