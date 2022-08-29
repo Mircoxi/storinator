@@ -111,10 +111,8 @@ export class StorageAPI {
      * @return {number} The timestamp to expire at.
      */
     static getExpiryTime(expireIn: number, from?: number): number {
-        if (typeof(from) !== 'undefined') {
-            return Math.round(from / 1000) + expireIn;
-        }
-        return Math.round(Date.now() / 1000) + expireIn;
+        if (typeof(from) === 'undefined') from = Date.now();
+        return Math.round(from / 1000) + expireIn;
     }
 
     /**
