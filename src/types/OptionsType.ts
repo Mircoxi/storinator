@@ -1,5 +1,3 @@
-import {EncodingTypeEnum} from "./EncodingTypeEnum";
-
 export type OptionsType = {
     /**
      * Used by the API to determine whether to set an expiry time.
