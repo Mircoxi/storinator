@@ -13,7 +13,7 @@ The OptionsType is used to pass in optional flags to storage objects.
 that the object should be considered to be "expired". Attempting to access the item after this time will remove it
 from the user's system.
 
-:code:`protected` - A boolean value specifying whether the object is "read only". It cannot be altered or deleted
+:code:`protect` - A boolean value specifying whether the object is "read only". It cannot be altered or deleted
 without explicitly setting the force parameter on the delete function.
 
 .. _localstorageobject:

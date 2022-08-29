@@ -24,7 +24,7 @@ Optionally, :ref:`options` can be passed in to extend the functionality. For exa
 
 .. code-block:: javascript
 
-    Storinator.setLocal('some important data', 'some important value', {expireIn: 2592000, protected: true});
+    Storinator.setLocal('some important data', 'some important value', {expireIn: 2592000, protect: true});
 
 This would set a storage object that expires in 30 days, and cannot be overwritten.
 
