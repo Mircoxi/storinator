@@ -91,11 +91,12 @@ export class StorageAPI {
      * @param {string} name The name of the object to delete.
      * @param {boolean} force If set to true, ignore protection status.
      */
-    static deleteLocal(name:string, force:boolean = false): void {
+    static deleteLocal(name:string, force:boolean = false): boolean {
         if (this.checkProtectionLocal(name) && force === false) {
             throw new Error('Trying to delete protected item!');
         } else {
             localStorage.removeItem(name)
+            return true;
         }
     }
 
