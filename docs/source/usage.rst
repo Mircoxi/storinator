@@ -17,11 +17,13 @@ Setting
 The basic operation you'll want to do is setting.
 
 .. code-block:: javascript
+
     Storinator.setLocal('name', 'value');
 
 Optionally, :ref:`options` can be passed in to extend the functionality. For example:
 
 .. code-block:: javascript
+
     Storinator.setLocal('some important data', 'some important value', {expireIn: 2592000, protected: true});
 
 This would set a storage object that expires in 30 days, and cannot be overwritten.
@@ -35,12 +37,14 @@ Getting
 To use your newly-stored object, you need to retrieve it first.
 
 .. code-block:: javascript
+
     var storedObject = Storinator.getLocal('name')
 
 By default, :code:`getLocal` will return a :ref:`localstorageobject` which contains data about the stored object.
 You can get the value by simply accessing the value property:
 
 .. code-block:: javascript
+
     console.log(storedObject.value)
     // 'some value here'
 
@@ -53,12 +57,14 @@ Deleting
 To delete an object, simply call the following:
 
 .. code-block:: javascript
+
     Storinator.deleteLocal('name')
 
 If an object is protected, it'll throw an error. If you really, `really` want to delete a protected object,
 the :code:`force` parameter will override this.
 
 .. code-block:: javascript
+
     Storinator.deleteLocal('some protected data', true)
 
 If you want to overwrite protected data, you have to explicitly delete it first as a precautionary step.
