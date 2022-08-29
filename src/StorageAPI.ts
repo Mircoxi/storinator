@@ -1,4 +1,3 @@
-import {EncodingTypeEnum} from "./types/EncodingTypeEnum";
 import {OptionsType} from "./types/OptionsType";
 import {LocalStorage} from "./types/LocalStorage";
 
