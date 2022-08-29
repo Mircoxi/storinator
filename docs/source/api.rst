@@ -16,7 +16,7 @@ from the user's system.
 :code:`protected` - A boolean value specifying whether the object is "read only". It cannot be altered or deleted
 without explicitly setting the force parameter on the delete function.
 
-.. _localstoragetype
+.. _localstorageobject
 
 LocalStorage Object
 -------------------
