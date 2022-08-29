@@ -55,4 +55,4 @@ A null value is returned, and the object in browser storage is deleted. If you w
 Storinator.deleteLocal('name');
 ```
 
-Storinator is extended over time with additional functionality. A full usage guide can be found in the docs.
+Storinator is extended over time with additional functionality. A full usage guide can be found in the [docs](https://storinator.readthedocs.io).

@@ -1,9 +1,10 @@
+************
 Installation
-============
+************
 
 
 npm
----
+===
 
 The recommended way to install :code:`storinator` is through npm.
 
@@ -17,4 +18,4 @@ After this, you can import it to your project.
 
     import Storinator from 'storinator'
 
-Any name can be used, but for these docs, `Storinator` will be used for clarity.
+Any name can be used, but for these docs, :code:`Storinator` will be used for clarity.
