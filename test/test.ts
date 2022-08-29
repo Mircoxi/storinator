@@ -42,7 +42,27 @@ describe('Local Storage Functionality', function () {
         it('Shouldn\'t find the test item.', function () {
             StorageAPI.setLocal("remove me", "bye bye :(");
             StorageAPI.deleteLocal("remove me");
-            expect(StorageAPI.getLocal("remove me")).to.equal(null)
+            let result = StorageAPI.getLocal("remove me");
+            expect(result).to.equal(null)
+        })
+    })
+
+    describe('Delete protected item', function () {
+        it('Should fail at deleting protected item', function () {
+            StorageAPI.setLocal("protected", "Can't remove me", {protect: true})
+            //expect(StorageAPI.deleteLocal('protected')).to.throw(Error);
+            // Typescript wackiness. Chai doesn't like Errors thrown with the transpiler, so we have to use
+            // an arrow function instead.
+            expect(() => {
+                StorageAPI.deleteLocal('protected')
+            }).to.throw('Trying to delete protected item!')
+        })
+    })
+
+    describe('Force delete protected item', function () {
+        it('Should delete the protected item.', function () {
+
+            expect(StorageAPI.deleteLocal('protected', true)).to.equal(true)
         })
     })
 
