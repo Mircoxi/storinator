@@ -7,13 +7,13 @@ npm
 
 The recommended way to install :code:`storinator` is through npm.
 
-.. codeblock:: console
+.. code-block:: console
 
     $ npm i storinator
 
 After this, you can import it to your project.
 
-.. codeblock:: javascript
+.. code-block:: javascript
 
     import Storinator from 'storinator'
 
