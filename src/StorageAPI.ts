@@ -5,6 +5,12 @@ import {LocalStorage} from "./types/LocalStorage";
 
 export class StorageAPI {
 
+    static maintenance() {
+        for (var key in localStorage){
+            this.getLocal(key)
+        }
+    }
+
     static setLocal(name: string, value: string, options: OptionsType = {}): LocalStorage {
         let expiry: number = 0;
         if (typeof(options.expireIn) !== 'undefined') {

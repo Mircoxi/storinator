@@ -46,4 +46,21 @@ describe('Local Storage Functionality', function () {
         })
     })
 
+
+    describe('Mass Cleanup Test', function () {
+        this.timeout(15000);
+        it('Should pause', async function () {
+            StorageAPI.deleteLocal("Test")
+            StorageAPI.setLocal("Expire1", "expires soon", {expireIn: 1})
+            StorageAPI.setLocal("Expire2", "expires soon", {expireIn: 5})
+            StorageAPI.setLocal("Expire3", "expires soon", {expireIn: 6})
+            StorageAPI.setLocal("Expire4", "expires soon", {expireIn: 7})
+            StorageAPI.setLocal("Expire5", "expires soon", {expireIn: 9})
+            await new Promise(r => setTimeout(r, 10000));
+            StorageAPI.maintenance();
+
+            expect(localStorage.length).to.equal(0);
+        })
+    })
+
 })
