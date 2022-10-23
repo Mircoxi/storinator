@@ -15,15 +15,15 @@ describe('Local Storage Functionality', function () {
 
     describe('Setting Local Storage', function () {
         it('Should return an identical LocalStorage object to the test one', function() {
-            let test: LocalStorage = {name: "Test", value: "Test Value", expires: expiryTime, readOnly: true}
-            let returned = StorageAPI.setLocal("Test", "Test Value", {readOnly: true, expireIn: 38400})
+            let test: LocalStorage = {name: "Test", value: "Test Value", expires: expiryTime, protect: true}
+            let returned = StorageAPI.setLocal("Test", "Test Value", {protect: true, expireIn: 38400})
             expect(test).to.eql(returned) // Use eql here because the objects are different! to.deep.equal would also work.
         })
     })
 
     describe('Getting from local storage', function () {
         it('Should return an identical LocalStorage object to the test one', function() {
-            let test: LocalStorage = {name: "Test", value: "Test Value", expires: expiryTime, readOnly: true}
+            let test: LocalStorage = {name: "Test", value: "Test Value", expires: expiryTime, protect: true}
             let returned = StorageAPI.getLocal("Test")
             expect(test).to.eql(returned) // Use eql here because the objects are different! to.deep.equal would also work.
 
@@ -42,7 +42,27 @@ describe('Local Storage Functionality', function () {
         it('Shouldn\'t find the test item.', function () {
             StorageAPI.setLocal("remove me", "bye bye :(");
             StorageAPI.deleteLocal("remove me");
-            expect(StorageAPI.getLocal("remove me")).to.equal(null)
+            let result = StorageAPI.getLocal("remove me");
+            expect(result).to.equal(null)
+        })
+    })
+
+    describe('Delete protected item', function () {
+        it('Should fail at deleting protected item', function () {
+            StorageAPI.setLocal("protected", "Can't remove me", {protect: true})
+            //expect(StorageAPI.deleteLocal('protected')).to.throw(Error);
+            // Typescript wackiness. Chai doesn't like Errors thrown with the transpiler, so we have to use
+            // an arrow function instead.
+            expect(() => {
+                StorageAPI.deleteLocal('protected')
+            }).to.throw('Trying to delete protected item!')
+        })
+    })
+
+    describe('Force delete protected item', function () {
+        it('Should delete the protected item.', function () {
+
+            expect(StorageAPI.deleteLocal('protected', true)).to.equal(true)
         })
     })
 
