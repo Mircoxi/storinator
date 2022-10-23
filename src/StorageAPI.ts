@@ -4,6 +4,13 @@ import {LocalStorage} from "./types/LocalStorage";
 
 export class StorageAPI {
 
+
+    static maintenance() {
+        for (var key in localStorage){
+            this.getLocal(key)
+        }
+    }
+
     /**
      * Sets a local storage object for the browser. On success, returns a LocalStorage object.
      * @param {string} name The name of the key to set.
